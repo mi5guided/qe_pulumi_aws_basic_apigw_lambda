@@ -65,8 +65,8 @@ function rsrcPulumiCreate() {
 
   // Create the API Gateway Rest API
   rsrcPulumiSimpleApi.apiRestApi = new aws.apigateway.RestApi(modConfig.prefix + "basicApi", {
-    name: modConfig.prefix + "basicApi",
-    description: "sFTP Transfer Service Custom IDP api",
+    name: modConfig.prefix + "BasicApi",
+    description: "A simple lambda integration",
     endpointConfiguration: { types: "REGIONAL" }
   });
 
@@ -134,7 +134,7 @@ function rsrcPulumiCreate() {
   }, { dependsOn: [rsrcPulumiSimpleApi.apiDeployment] });
 
   // finally, allow API Gateway to call the lambda function
-  rsrcPulumiSimpleApi.apiRestLambdaPermission = new aws.lambda.Permission(modConfig.prefix + "sFTPAuthLambdaPermission", {
+  rsrcPulumiSimpleApi.apiRestLambdaPermission = new aws.lambda.Permission(modConfig.prefix + "basicLambdaPermissions", {
     action: "lambda:invokeFunction",
     function: rsrcPulumiSimpleApi.lambda,
     principal: "apigateway.amazonaws.com",
