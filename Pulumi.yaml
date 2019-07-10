@@ -1,0 +1,3 @@
+name: basicLambdaAPI
+runtime: nodejs
+description: A basic lambda fronted by API Gateway
